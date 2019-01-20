@@ -1,6 +1,5 @@
 $(document).ready(function () {
   // Initialize Firebase
-  alert("hello");
   var config = {
     apiKey: "AIzaSyAD_htX2gyX3pvOzDbHb37-8oj34tqwNW0",
     authDomain: "kings-cross-193a2.firebaseapp.com",
@@ -13,7 +12,7 @@ $(document).ready(function () {
 
   var database = firebase.database();
 
-  $("submit").on("click", function () {
+  $("#submit").on("click", function (event) {
     event.preventDefault();
 
     var name = $("#tNameInput").val().trim();
