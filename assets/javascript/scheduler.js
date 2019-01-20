@@ -1,20 +1,21 @@
 $(document).ready(function () {
-  //Firebase link
+  // Initialize Firebase
+  alert("hello");
   var config = {
-    apiKey: "AIzaSyB94MDRa_FidgxXBlhuHYgYiCwK5Mk1Hvk",
-    authDomain: "train-scheduler-6b333.firebaseapp.com",
-    databaseURL: "https://train-scheduler-6b333.firebaseio.com",
-    projectId: "train-scheduler-6b333",
-    storageBucket: "train-scheduler-6b333.appspot.com",
-    messagingSenderId: "1056796114865"
+    apiKey: "AIzaSyAD_htX2gyX3pvOzDbHb37-8oj34tqwNW0",
+    authDomain: "kings-cross-193a2.firebaseapp.com",
+    databaseURL: "https://kings-cross-193a2.firebaseio.com",
+    projectId: "kings-cross-193a2",
+    storageBucket: "",
+    messagingSenderId: "255143678899"
   };
   firebase.initializeApp(config);
 
   var database = firebase.database();
 
-  $("submit").on("click", function() {
+  $("submit").on("click", function () {
     event.preventDefault();
-    
+
     var name = $("#tNameInput").val().trim();
     var dest = $("#tDestInput").val().trim();
     var first = $("#tFirstInput").val().trim();
@@ -28,7 +29,7 @@ $(document).ready(function () {
     });
   });
 
-  database.ref().on("child_added", function (snapshot){
+  database.ref().on("child_added", function (snapshot) {
     var snap = snapshot.val();
     console.log(snap.name);
     console.log(snap.dest);
@@ -37,7 +38,12 @@ $(document).ready(function () {
 
     var trainName = snap.name;
     var trainDest = snap.dest;
-    var tra
-  })
+    var trainFirst = snap.first;
+    var trainFreq = snap.freq;
 
+    var newRow = $("<tr>").append($("<td>").text(trainName), $("<td>").text(trainDest), $("<td>").text(trainFirst), $("<td>").text(trainFreq));
+
+
+    $(".trains").append(newRow);
+  })
 })
