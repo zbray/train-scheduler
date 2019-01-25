@@ -12,14 +12,7 @@ $(document).ready(function () {
 
   var database = firebase.database();
   $("#currentTime").append(moment().format("HH:mm"));
-  
-  //Calculate next arrival
-  //9am is first train, train comes every seven minutes
-  //what if the time is 931am
-  //the first train was 31 minutes ago
-  //at arrivals on minutes in multiples of 7, the next train is at 9:35, 4 minutes away
   //
-
   $("#submit").on("click", function (event) {
     //Stops page from refreshing on click of submit
     event.preventDefault();
@@ -34,24 +27,27 @@ $(document).ready(function () {
       dest: dest,
       first: first,
       freq: freq,
-      next:next;
     });
   });
 
 
   database.ref().on("child_added", function (snapshot) {
     var snap = snapshot.val();
+    console.log(snap.name);
+    console.log(snap.dest);
+    console.log(snap.first);
+    console.log(snap.freq);
 
     var trainName = snap.name;
     var trainDest = snap.dest;
     var trainFirst = snap.first;
     var trainFreq = snap.freq;
 
-
-
+    
+    //Calculates next arrival
     
     
-    
+    var trainNext;
 
     //Creates new row for each user entry and appends to table data from firebase
     var newRow = $("<tr>").append($("<td>").text(trainName), $("<td>").text(trainDest), $("<td>").text(trainFirst), $("<td>").text(trainFreq), $("<td>").text(trainNext));
