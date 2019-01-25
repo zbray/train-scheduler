@@ -14,12 +14,12 @@ $(document).ready(function () {
 
   $("#submit").on("click", function (event) {
     event.preventDefault();
-
+    //Saves user input to variables
     var name = $("#tNameInput").val().trim();
     var dest = $("#tDestInput").val().trim();
     var first = $("#tFirstInput").val().trim();
     var freq = $("#tFreqInput").val().trim();
-
+    //Pushes these variables to firebase
     database.ref().push({
       name: name,
       dest: dest,
@@ -27,7 +27,7 @@ $(document).ready(function () {
       freq: freq,
     });
   });
-
+//
   database.ref().on("child_added", function (snapshot) {
     var snap = snapshot.val();
     console.log(snap.name);
