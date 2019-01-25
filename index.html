@@ -17,12 +17,12 @@
 <body>
   <div class="container">
     <div class="jumbotron">
-      <h2>King's Cross Station</h2>
+      <h2 style="te">King's Cross Station</h2>
     </div>
-    <hr>
+
     <!-- Table -->
     <div>
-      <table class="table">
+      <table class="table table-striped table-dark">
         <thead class="thead-dark">
           <tr>
             <th>Employee Name</th>
@@ -34,33 +34,38 @@
         </thead>
         <tbody class="trains">
           <tr id="tableRow">
-            <th scope="row"></th>
+
           </tr>
         </tbody>
       </table>
     </div>
 
     <!-- Input -->
-    <div>
-      <form>
-        <div class="form-group">
-          <label for="tNameInput">Train Name</label>
-          <input type="text" class="form-control" id="tNameInput">
-        </div>
-        <div class="form-group">
-          <label for="tDestInput">Destination</label>
-          <input type="text" class="form-control" id="tDestInput">
-        </div>
-        <div class="form-group">
-          <label for="tFirstInput">First Train Time</label>
-          <input type="text" class="form-control" id="tFirstInput">
-        </div>
-        <div class="form-group">
-          <label for="tFreqInput">Frequency in Minutes</label>
-          <input type="text" class="form-control" id="tFreqInput">
-        </div>
-        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-      </form>
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        Add the next train
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="tNameInput">Train Name</label>
+            <input type="text" class="form-control" id="tNameInput">
+          </div>
+          <div class="form-group">
+            <label for="tDestInput">Destination</label>
+            <input type="text" class="form-control" id="tDestInput">
+          </div>
+          <div class="form-group">
+            <label for="tFirstInput">First Train Time</label>
+            <input type="text" class="form-control" id="tFirstInput">
+          </div>
+          <div class="form-group">
+            <label for="tFreqInput">Frequency in Minutes</label>
+            <input type="text" class="form-control" id="tFreqInput">
+          </div>
+          <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
 
   </div>
