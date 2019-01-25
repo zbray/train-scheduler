@@ -13,6 +13,7 @@ $(document).ready(function () {
   var database = firebase.database();
 
   $("#submit").on("click", function (event) {
+    //Stops page from refreshing on click of submit
     event.preventDefault();
     //Saves user input to variables
     var name = $("#tNameInput").val().trim();
@@ -27,7 +28,8 @@ $(document).ready(function () {
       freq: freq,
     });
   });
-//
+
+
   database.ref().on("child_added", function (snapshot) {
     var snap = snapshot.val();
     console.log(snap.name);
@@ -40,9 +42,14 @@ $(document).ready(function () {
     var trainFirst = snap.first;
     var trainFreq = snap.freq;
 
-    var newRow = $("<tr>").append($("<td>").text(trainName), $("<td>").text(trainDest), $("<td>").text(trainFirst), $("<td>").text(trainFreq));
+    
+    //Calculates next arrival
+    
+    
+    var trainNext;
 
-
+    //Creates new row for each user entry and appends to table data from firebase
+    var newRow = $("<tr>").append($("<td>").text(trainName), $("<td>").text(trainDest), $("<td>").text(trainFirst), $("<td>").text(trainFreq), $("<td>").text(trainNext));
     $(".trains").append(newRow);
   })
 })
