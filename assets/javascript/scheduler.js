@@ -11,7 +11,8 @@ $(document).ready(function () {
   firebase.initializeApp(config);
 
   var database = firebase.database();
-
+  $("#currentTime").append(moment().format("HH:mm"));
+  //
   $("#submit").on("click", function (event) {
     //Stops page from refreshing on click of submit
     event.preventDefault();
