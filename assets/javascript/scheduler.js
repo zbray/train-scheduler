@@ -21,6 +21,7 @@ $(document).ready(function () {
     var dest = $("#tDestInput").val().trim();
     var first = $("#tFirstInput").val().trim();
     var freq = $("#tFreqInput").val().trim();
+
     //Pushes these variables to firebase
     database.ref().push({
       name: name,
@@ -33,24 +34,30 @@ $(document).ready(function () {
 
   database.ref().on("child_added", function (snapshot) {
     var snap = snapshot.val();
-    console.log(snap.name);
-    console.log(snap.dest);
-    console.log(snap.first);
-    console.log(snap.freq);
+    // console.log(snap.name);
+    // console.log(snap.dest);
+    // console.log(snap.first);
+    // console.log(snap.freq);
 
     var trainName = snap.name;
     var trainDest = snap.dest;
     var trainFirst = snap.first;
     var trainFreq = snap.freq;
 
-    
+
     //Calculates next arrival
-    
-    
+
+
     var trainNext;
 
     //Creates new row for each user entry and appends to table data from firebase
-    var newRow = $("<tr>").append($("<td>").text(trainName), $("<td>").text(trainDest), $("<td>").text(trainFirst), $("<td>").text(trainFreq), $("<td>").text(trainNext));
+    var newRow = $("<tr>").append(
+      $("<td>").text(trainName),
+      $("<td>").text(trainDest),
+      $("<td>").text(trainFirst),
+      $("<td>").text(trainFreq),
+      $("<td>").text(trainNext));
+
     $(".trains").append(newRow);
   })
 })
