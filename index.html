@@ -29,9 +29,9 @@
           <tr>
             <th scope="col">Train Name</th>
             <th scope="col">Destination</th>
-            <th scope="col">First Train Time (HHMM)</th>
-            <th scope="col">Frequency by Minutes</th>
-            <th scope="col">Next Arrival</th>
+            <th scope="col">Frequency</th>
+            <th scope="col">Wait Time</th>
+            <th scope="col">Next Train</th>
           </tr>
         </thead>
         <tbody class="trains">
@@ -50,19 +50,19 @@
         <form>
           <div class="form-group">
             <label for="tNameInput">Train Name</label>
-            <input type="text" class="form-control" id="tNameInput">
+            <input type="text" class="form-control" id="tNameInput" required>
           </div>
           <div class="form-group">
             <label for="tDestInput">Destination</label>
-            <input type="text" class="form-control" id="tDestInput">
+            <input type="text" class="form-control" id="tDestInput" required>
           </div>
           <div class="form-group">
-            <label for="tFirstInput">First Train Time (24 hour clock)</label>
-            <input type="time" class="form-control" id="tFirstInput">
+            <label for="tFirstInput">First Train Time (AM/PM)</label>
+            <input type="time" class="form-control" id="tFirstInput" required>
           </div>
           <div class="form-group">
             <label for="tFreqInput">Frequency in Minutes</label>
-            <input type="text" class="form-control" id="tFreqInput">
+            <input type="text" class="form-control" id="tFreqInput" >
           </div>
           <button type="submit" id="submit" class="btn btn-primary">Submit</button>
         </form>

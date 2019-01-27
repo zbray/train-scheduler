@@ -19,8 +19,10 @@ $(document).ready(function () {
     //Saves user input to variables
     var name = $("#tNameInput").val().trim();
     var dest = $("#tDestInput").val().trim();
-    var first = $("#tFirstInput").val().trim();
+    var first = moment($("#tFirstInput").val().trim(), "HH:mm").subtract(10, "years").format("X");
     var freq = $("#tFreqInput").val().trim();
+
+
 
     //Pushes these variables to firebase
     database.ref().push({
@@ -29,34 +31,42 @@ $(document).ready(function () {
       first: first,
       freq: freq,
     });
+
+    $("#tNameInput").val("");
+    $("#tDestInput").val("");
+    $("#tFirstInput").val("");
+    $("#tFreqInput").val("");
   });
 
 
   database.ref().on("child_added", function (snapshot) {
-    var snap = snapshot.val();
+    var data = snapshot.val();
     // console.log(snap.name);
     // console.log(snap.dest);
     // console.log(snap.first);
     // console.log(snap.freq);
 
-    var trainName = snap.name;
-    var trainDest = snap.dest;
-    var trainFirst = snap.first;
-    var trainFreq = snap.freq;
+    var trainName = data.name;
+    var trainDest = data.dest;
+    var trainFirst = data.first;
+    var trainFreq = data.freq;
 
+    console.log(trainFirst);
 
-    //Calculates next arrival
+    //Calculate How Many Minutes until next train
+    var trainRemainder = moment().diff(moment.unix(trainFirst), "minutes") % trainFreq;
+    var trainMinutes = trainFreq - trainRemainder;
 
-
-    var trainNext;
+    // Calculate Next Arrival Time
+    var nextTrain = moment().add(trainMinutes, "m").format("hh:mm A");
 
     //Creates new row for each user entry and appends to table data from firebase
     var newRow = $("<tr>").append(
       $("<td>").text(trainName),
       $("<td>").text(trainDest),
-      $("<td>").text(trainFirst),
-      $("<td>").text(trainFreq),
-      $("<td>").text(trainNext));
+      $("<td>").text("every " + trainFreq + " minutes"),
+      $("<td>").text(trainMinutes + " minutes"),
+      $("<td>").text(nextTrain));
 
     $(".trains").append(newRow);
   })
