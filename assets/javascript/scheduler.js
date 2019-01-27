@@ -11,8 +11,9 @@ $(document).ready(function () {
   firebase.initializeApp(config);
 
   var database = firebase.database();
+  //Display Current Time under name of user's current trainstation
   $("#currentTime").append(moment().format("HH:mm"));
-  //
+
   $("#submit").on("click", function (event) {
     //Stops page from refreshing on click of submit
     event.preventDefault();
@@ -22,8 +23,6 @@ $(document).ready(function () {
     var first = moment($("#tFirstInput").val().trim(), "HH:mm").subtract(1, "years");
     var freq = $("#tFreqInput").val().trim();
 
-
-
     //Pushes these variables to firebase
     database.ref().push({
       name: name,
@@ -32,26 +31,19 @@ $(document).ready(function () {
       freq: freq,
     });
 
+    //Clears fields after firebase receives their text values
     $("#tNameInput").val("");
     $("#tDestInput").val("");
     $("#tFirstInput").val("");
     $("#tFreqInput").val("");
   });
 
-
   database.ref().on("child_added", function (snapshot) {
     var data = snapshot.val();
-    // console.log(snap.name);
-    // console.log(snap.dest);
-    // console.log(snap.first);
-    // console.log(snap.freq);
-
     var trainName = data.name;
     var trainDest = data.dest;
     var trainFirst = data.first;
     var trainFreq = data.freq;
-
-    console.log(trainFirst);
 
     //Calculate How Many Minutes until next train
     var trainRemainder = moment().diff(moment.unix(trainFirst), "minutes") % trainFreq;
@@ -66,8 +58,10 @@ $(document).ready(function () {
       $("<td>").text(trainDest),
       $("<td>").text("every " + trainFreq + " minutes"),
       $("<td>").text(trainMinutes + " minutes"),
-      $("<td>").text(nextTrain));
+      $("<td>").text(nextTrain)
+    );
 
+    //Places all new data onto train board
     $(".trains").append(newRow);
   })
 })
