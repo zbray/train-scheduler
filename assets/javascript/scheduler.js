@@ -19,7 +19,7 @@ $(document).ready(function () {
     //Saves user input to variables
     var name = $("#tNameInput").val().trim();
     var dest = $("#tDestInput").val().trim();
-    var first = moment($("#tFirstInput").val().trim(), "HH:mm").subtract(10, "years").format("X");
+    var first = moment($("#tFirstInput").val().trim(), "HH:mm").subtract(1, "years");
     var freq = $("#tFreqInput").val().trim();
 
 
