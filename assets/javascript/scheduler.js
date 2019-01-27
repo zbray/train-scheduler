@@ -5,7 +5,7 @@ $(document).ready(function () {
     authDomain: "kings-cross-193a2.firebaseapp.com",
     databaseURL: "https://kings-cross-193a2.firebaseio.com",
     projectId: "kings-cross-193a2",
-    storageBucket: "",
+    storageBucket: "kings-cross-193a2.appspot.com",
     messagingSenderId: "255143678899"
   };
   firebase.initializeApp(config);
