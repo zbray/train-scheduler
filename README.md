@@ -14,6 +14,8 @@ Used firebase to store inputs form a form and display them back to the user.
 
 I learned that even though an npm package like Moment.js could translate time taken from the user and display it in a 24-hour format, the current limits on `<input type="time"` are such that input validation that would require a 24-hour input don't exist yet.
 
+I also learned in testing that Safari doesn't support Date and Time input types. Researching further at Can I Use I learned that many other browsers support Date and Time, including Safari on iOS devices but not desktop Safari.
+
 ### Tools Utilized
 
 HTML, CSS, Javascript, Firebase, Moment.js
