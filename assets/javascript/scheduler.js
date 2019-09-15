@@ -12,7 +12,6 @@ $(document).ready(function () {
 
   var database = firebase.database();
   $("#currentTime").append(moment().format("HH:mm"));
-  //
   $("#submit").on("click", function (event) {
     //Stops page from refreshing on click of submit
     event.preventDefault();
@@ -21,8 +20,6 @@ $(document).ready(function () {
     var dest = $("#tDestInput").val().trim();
     var first = moment($("#tFirstInput").val().trim(), "HH:mm").subtract(10, "years").format("X");
     var freq = $("#tFreqInput").val().trim();
-
-
 
     //Pushes these variables to firebase
     database.ref().push({
@@ -38,7 +35,6 @@ $(document).ready(function () {
     $("#tFreqInput").val("");
   });
 
-
   database.ref().on("child_added", function (snapshot) {
     var data = snapshot.val();
     // console.log(snap.name);
@@ -50,15 +46,14 @@ $(document).ready(function () {
     var trainDest = data.dest;
     var trainFirst = data.first;
     var trainFreq = data.freq;
-
-    console.log(trainFirst);
+    // console.log(trainFirst);
 
     //Calculate How Many Minutes until next train
     var trainRemainder = moment().diff(moment.unix(trainFirst), "minutes") % trainFreq;
     var trainMinutes = trainFreq - trainRemainder;
 
     // Calculate Next Arrival Time
-    var nextTrain = moment().add(trainMinutes, "m").format("hh:mm A");
+    var nextTrain = moment().add(trainMinutes, "m").format("HH.mm");
 
     //Creates new row for each user entry and appends to table data from firebase
     var newRow = $("<tr>").append(
@@ -67,7 +62,6 @@ $(document).ready(function () {
       $("<td>").text("every " + trainFreq + " minutes"),
       $("<td>").text(trainMinutes + " minutes"),
       $("<td>").text(nextTrain));
-
     $(".trains").append(newRow);
   })
 })

@@ -14,6 +14,10 @@ Used firebase to store inputs form a form and display them back to the user.
 
 HTML, CSS, Javascript, Firebase, Moment.js
 
+### Future Fixes
+
+Validation, Uppercase Destination, 24-hour clock
+
 ### GitHub Pages Deployment
 https://zbray.github.io/trainScheduler/
 
