@@ -10,6 +10,10 @@ Needed a way to display information that a user inputed into a database.
 
 Used firebase to store inputs form a form and display them back to the user.
 
+### Lessons Learned
+
+I learned that even though an npm package like Moment.js could translate time taken from the user and display it in a 24-hour format, the current limits on `<input type="time"` are such that input validation that would require a 24-hour input don't exist yet.
+
 ### Tools Utilized
 
 HTML, CSS, Javascript, Firebase, Moment.js
